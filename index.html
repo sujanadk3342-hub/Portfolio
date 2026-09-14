@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sujan Adhikari — Web Developer &amp; B.Sc. CSIT Student</title>
+<meta name="description" content="Portfolio of Sujan Adhikari, a B.Sc. CSIT student in Kathmandu learning full-stack development by building real projects, starting with Discover Nepal, a travel exploration platform.">
+
+<meta property="og:title" content="Sujan Adhikari — Web Developer & B.Sc. CSIT Student">
+<meta property="og:description" content="Learning by building. A first portfolio documenting the climb from HTML basics to full-stack projects.">
+<meta property="og:type" content="website">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%23C9A15D%22>S</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script>
+  // Apply a saved preference before the page paints.
+  try {
+    const savedTheme = localStorage.getItem('portfolio-theme');
+    const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    document.documentElement.dataset.theme = savedTheme || (systemPrefersLight ? 'light' : 'dark');
+  } catch (_) {}
+</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- Coordinate rail — fixed scroll-position marker, desktop only -->
+<aside class="rail" aria-hidden="true">
+  <div class="rail__coords">27.71°N&nbsp;&nbsp;85.32°E</div>
+  <div class="rail__track">
+    <div class="rail__fill" id="railFill"></div>
+  </div>
+  <div class="rail__station"><span id="railStation">01</span>/06</div>
+</aside>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="#top" class="wordmark">SA<span class="wordmark__dot">.</span></a>
+
+    <nav class="nav" id="primaryNav" aria-label="Primary">
+      <ul class="nav__list">
+        <li><a href="#top" class="nav__link" data-section="top">Home</a></li>
+        <li><a href="#about" class="nav__link" data-section="about">About</a></li>
+        <li><a href="#skills" class="nav__link" data-section="skills">Skills</a></li>
+        <li><a href="#work" class="nav__link" data-section="work">Projects</a></li>
+        <li><a href="#journey" class="nav__link" data-section="journey">Journey</a></li>
+        <li><a href="#contact" class="nav__link" data-section="contact">Contact</a></li>
+      </ul>
+      <div class="nav__indicator" id="navIndicator" aria-hidden="true"></div>
+    </nav>
+
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" role="switch" aria-checked="false" aria-label="Switch to light theme">
+        <svg class="theme-toggle__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        <span class="theme-toggle__track" aria-hidden="true"><span class="theme-toggle__thumb"></span></span>
+        <svg class="theme-toggle__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M20.4 15.1A8.5 8.5 0 0 1 8.9 3.6 8.5 8.5 0 1 0 20.4 15.1Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+      </button>
+
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav" aria-label="Mobile" hidden>
+  <ul>
+    <li><a href="#top" class="mobile-nav__link">Home</a></li>
+    <li><a href="#about" class="mobile-nav__link">About</a></li>
+    <li><a href="#skills" class="mobile-nav__link">Skills</a></li>
+    <li><a href="#work" class="mobile-nav__link">Projects</a></li>
+    <li><a href="#journey" class="mobile-nav__link">Journey</a></li>
+    <li><a href="#contact" class="mobile-nav__link">Contact</a></li>
+  </ul>
+  <p class="mobile-nav__meta">B.Sc. CSIT · Kathmandu, Nepal</p>
+</nav>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <canvas class="hero__contours" id="contourCanvas" aria-hidden="true"></canvas>
+
+    <div class="hero__grid">
+      <p class="hero__eyebrow"><span class="tick"></span> First ascent — a portfolio-in-progress</p>
+
+      <h1 class="hero__name">
+        Sujan<br>
+        <em>Adhikari</em>
+      </h1>
+
+      <div class="hero__role">
+        <span class="hero__role-fixed">B.Sc. CSIT Student —</span>
+        <span class="hero__role-rotate" id="roleRotate" aria-live="off">
+          <span class="hero__role-text" id="roleText"></span><span class="hero__cursor" id="roleCursor"></span>
+        </span>
+      </div>
+
+      <p class="hero__statement">
+        Learning by building. Building to become better — one project,<br class="br-desktop">
+        one bug, one deploy at a time.
+      </p>
+
+      <div class="hero__actions">
+        <a href="#work" class="btn btn--primary">
+          <span>See the first project</span>
+          <svg class="btn__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#contact" class="btn btn--ghost">Get in touch</a>
+      </div>
+    </div>
+
+    <div class="hero__scroll-cue" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="about" id="about">
+    <div class="section-head">
+      <span class="section-tag">Station 02 — About</span>
+      <h2 class="section-title">Currently mapping the<br>route from student to developer.</h2>
+    </div>
+
+    <div class="about__grid">
+      <div class="about__lead">
+        <p><span class="dropcap">I</span>&rsquo;m a first-semester B.Sc. CSIT student in Kathmandu, which is a formal way of saying: I&rsquo;m early, and most of what I know about building for the web I&rsquo;ve taught myself between problem sets. I don&rsquo;t have a portfolio full of client work or a job title yet — what I have is a habit of finishing what I start, and a first project that actually works, in production, that real people could open right now.</p>
+        <p>That project — a travel platform for exploring Nepal — is where the theory in my coursework started turning into something I could click around in. It's also where I found out how much I didn't know, which turned out to be the useful part.</p>
+      </div>
+
+      <aside class="about__facts">
+        <dl>
+          <div class="fact">
+            <dt>Based in</dt>
+            <dd>Kathmandu, Nepal</dd>
+          </div>
+          <div class="fact">
+            <dt>Studying</dt>
+            <dd>B.Sc. Computer Science &amp; IT</dd>
+          </div>
+          <div class="fact">
+            <dt>Currently</dt>
+            <dd>Building, breaking, rebuilding</dd>
+          </div>
+          <div class="fact">
+            <dt>Heading toward</dt>
+            <dd>Full-stack development</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section class="skills" id="skills">
+    <div class="section-head">
+      <span class="section-tag">Station 03 — Skills</span>
+      <h2 class="section-title">What I can build with,<br>and what I&rsquo;m building toward.</h2>
+    </div>
+
+    <div class="skills__grid">
+
+      <div class="skill-group">
+        <h3 class="skill-group__title">
+          <span class="skill-group__mark skill-group__mark--solid"></span>
+          Frontend
+        </h3>
+        <p class="skill-group__desc">Where I&rsquo;m comfortable — I reach for these without thinking twice.</p>
+        <ul class="skill-list">
+          <li class="skill-item" data-note="Semantic markup, accessibility, forms">HTML</li>
+          <li class="skill-item" data-note="Layout systems, custom properties, responsive design">CSS</li>
+          <li class="skill-item" data-note="DOM manipulation, events, fetch, ES6+">JavaScript</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3 class="skill-group__title">
+          <span class="skill-group__mark skill-group__mark--half"></span>
+          Currently learning
+        </h3>
+        <p class="skill-group__desc">In progress — not fluent yet, and I&rsquo;d rather say that than fake it.</p>
+        <ul class="skill-list">
+          <li class="skill-item" data-note="Components, state, hooks — next on the list">React</li>
+          <li class="skill-item" data-note="Node.js and Express fundamentals">Backend development</li>
+          <li class="skill-item" data-note="REST principles, fetch, JSON handling">APIs</li>
+          <li class="skill-item" data-note="Relational basics, still early">Databases</li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <h3 class="skill-group__title">
+          <span class="skill-group__mark skill-group__mark--solid"></span>
+          Tools
+        </h3>
+        <p class="skill-group__desc">How the work actually gets shipped.</p>
+        <ul class="skill-list">
+          <li class="skill-item" data-note="Branching, commits, history I can read later">Git</li>
+          <li class="skill-item" data-note="Version control, this portfolio lives here">GitHub</li>
+          <li class="skill-item" data-note="Where most of the hours go">VS Code</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="work" id="work">
+    <div class="section-head">
+      <span class="section-tag">Station 04 — Projects</span>
+      <h2 class="section-title">The first real thing<br>I shipped.</h2>
+    </div>
+
+    <article class="case-study">
+      <div class="case-study__preview">
+        <div class="device-frame">
+          <div class="device-frame__bar">
+            <span class="device-frame__coord">27.7172° N, 85.3240° E</span>
+            <span class="device-frame__label">discover-nepal · live</span>
+          </div>
+          <div class="device-frame__viewport">
+            <iframe
+              src="https://explore-nepal-phi.vercel.app/index.html"
+              title="Live preview of the Discover Nepal travel platform"
+              loading="lazy"
+              tabindex="-1"
+              aria-hidden="true">
+            </iframe>
+            <a class="device-frame__click-catcher" href="https://explore-nepal-phi.vercel.app/index.html" target="_blank" rel="noopener noreferrer" aria-label="Open Discover Nepal live site in a new tab"></a>
+          </div>
+        </div>
+
+        <div class="elevation-tags" aria-hidden="true">
+          <span class="elevation-tag" style="--d:0">PKR · 822M</span>
+          <span class="elevation-tag" style="--d:1">EBC · 5364M</span>
+          <span class="elevation-tag" style="--d:2">KTM · 1400M</span>
+        </div>
+      </div>
+
+      <div class="case-study__meta">
+        <p class="case-study__kicker">Project 01 — where it started</p>
+        <h3 class="case-study__title">Discover Nepal</h3>
+        <p class="case-study__desc">
+          A travel exploration platform built to make browsing Nepal&rsquo;s trekking regions and heritage sites feel effortless — from lakeside Pokhara to Everest Base Camp to the living heritage squares of Kathmandu.
+        </p>
+
+        <div class="case-study__row">
+          <h4>Stack</h4>
+          <ul class="tag-list">
+            <li>HTML5</li><li>CSS3</li><li>Vanilla JavaScript</li>
+          </ul>
+        </div>
+
+        <div class="case-study__row">
+          <h4>The problem</h4>
+          <p>Most local travel pages I found were either dense text blocks or tourism-board PDFs. I wanted something that let a visitor scan destinations by region and elevation, in a layout that felt closer to a modern product than a brochure.</p>
+        </div>
+
+        <div class="case-study__row">
+          <h4>What I learned</h4>
+          <p>How to structure a multi-page site with shared navigation, how to build an account modal with tab-switching login/signup states, and — mostly — how much CSS it actually takes to make something look simple.</p>
+        </div>
+
+        <div class="case-study__row">
+          <h4>Challenges</h4>
+          <p>Keeping the layout consistent across four separate HTML pages without a framework meant a lot of manual discipline with shared classes and spacing tokens. That friction is part of why learning React is next.</p>
+        </div>
+
+        <div class="case-study__actions">
+          <a href="https://explore-nepal-phi.vercel.app/index.html" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+            <span>Live demo</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M4 10L10 4M10 4H5M10 4V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#" class="btn btn--ghost btn--disabled" aria-disabled="true" title="Source repository — coming soon">Source (coming soon)</a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============ JOURNEY ============ -->
+  <section class="journey" id="journey">
+    <div class="section-head">
+      <span class="section-tag">Station 05 — Journey</span>
+      <h2 class="section-title">The route so far.</h2>
+    </div>
+
+    <div class="ascent" id="ascent">
+      <svg class="ascent__path" viewBox="0 0 100 400" preserveAspectRatio="none" aria-hidden="true">
+        <path id="ascentLine" d="M6,10 L94,80 L10,150 L90,220 L14,290 L50,360" fill="none" stroke="var(--glacier)" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+
+      <ol class="ascent__list">
+        <li class="camp" style="--y:10">
+          <span class="camp__marker">01</span>
+          <div class="camp__body">
+            <span class="camp__alt">Base — 2024</span>
+            <h3>Started with HTML &amp; CSS</h3>
+            <p>Static pages, box model headaches, the first time a layout actually looked how I imagined it.</p>
+          </div>
+        </li>
+        <li class="camp camp--right" style="--y:80">
+          <span class="camp__marker">02</span>
+          <div class="camp__body">
+            <span class="camp__alt">Camp I</span>
+            <h3>Built my first real website</h3>
+            <p>Discover Nepal — shipped, deployed, and public. The point everything since has built on.</p>
+          </div>
+        </li>
+        <li class="camp" style="--y:150">
+          <span class="camp__marker">03</span>
+          <div class="camp__body">
+            <span class="camp__alt">Camp II</span>
+            <h3>Started learning JavaScript</h3>
+            <p>DOM manipulation, events, the moment static pages started responding to people.</p>
+          </div>
+        </li>
+        <li class="camp camp--right" style="--y:220">
+          <span class="camp__marker">04</span>
+          <div class="camp__body">
+            <span class="camp__alt">Camp III</span>
+            <h3>Building interactive projects</h3>
+            <p>This portfolio included — animation, state, and interaction as first-class parts of the build.</p>
+          </div>
+        </li>
+        <li class="camp" style="--y:290">
+          <span class="camp__marker">05</span>
+          <div class="camp__body">
+            <span class="camp__alt">Current camp</span>
+            <h3>Learning full-stack development</h3>
+            <p>React, APIs, and databases — the next range, currently being mapped.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact" id="contact">
+    <div class="contact__grid">
+      <div class="contact__intro">
+        <span class="section-tag">Station 06 — Contact</span>
+        <h2 class="contact__title">Let&rsquo;s build<br><em>something.</em></h2>
+        <p>Open to internships, collaboration, or just talking through a project. I reply fastest by email.</p>
+
+        <ul class="contact__links">
+          <li><a href="mailto:sujanadk3342@gmail.com">sujanadk3342@gmail.com</a></li>
+          <li><a href="https://github.com/sujanadk3342-hub" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/sujan-adhikari-003a103a2" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
+      </div>
+
+      <form class="contact__form" id="contactForm" novalidate>
+        <div class="field">
+          <label for="cf-name">Name</label>
+          <input type="text" id="cf-name" name="name" autocomplete="name" placeholder="Your name" required>
+          <span class="field__error" id="err-name" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" name="email" autocomplete="email" placeholder="you@example.com" required>
+          <span class="field__error" id="err-email" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="cf-subject">Subject</label>
+          <input type="text" id="cf-subject" name="subject" autocomplete="off" placeholder="What would you like to discuss?" required>
+          <span class="field__error" id="err-subject" role="alert"></span>
+        </div>
+        <div class="field">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="4" placeholder="Tell me a little about your project or idea." required></textarea>
+          <span class="field__error" id="err-message" role="alert"></span>
+        </div>
+        <button type="submit" class="btn btn--primary btn--full" id="contactSubmit">
+          <span>Send message</span>
+        </button>
+        <p class="contact__form-note" id="formNote" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div>
+      <p class="site-footer__name">Sujan Adhikari</p>
+      <p class="site-footer__meta">B.Sc. CSIT Student · Aspiring Full-Stack Developer</p>
+    </div>
+    <div class="site-footer__right">
+      <ul class="site-footer__links">
+        <li><a href="mailto:sujanadk3342@gmail.com">Email</a></li>
+        <li><a href="https://github.com/sujanadk3342-hub" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/sujan-adhikari-003a103a2" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      </ul>
+      <p class="site-footer__copy">© 2026 — Kathmandu, Nepal</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="emailjs-config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
